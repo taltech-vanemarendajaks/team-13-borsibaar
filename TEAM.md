@@ -18,7 +18,8 @@ Mingi Kapapatrull
 ### Branches
 
 (at least three)
-
+1. InventoryService: getByOrganization loads the Product for each Inventory via productRepository.findById - replaced with inventory.getProduct - Lauri
+2. Created a public item transaction history endpoint - created endpoint in InvemtoryTransactionController - Lauri
 ### Reviews
 
 ### Merges
