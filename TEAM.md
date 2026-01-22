@@ -14,7 +14,7 @@ Mingi Kapapatrull
 - Kairo Korgend - KairoKorgend
 
 ## Short description of your team workflow
-test-mkoks
+test-mkoks short description.
 ### Branches
 
 (at least three)
