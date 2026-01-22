@@ -53,8 +53,9 @@ public class InventoryService {
         return inventories.stream()
                 .map(inv -> {
                     InventoryResponseDto base = inventoryMapper.toResponse(inv);
-                    Product product = productRepository.findById(inv.getProductId())
-                            .orElse(null);
+                    Product product = inv.getProduct();
+//                    Product product = productRepository.findById(inv.getProductId())
+//                            .orElse(null);
 
                     if (product == null)
                         return null;
