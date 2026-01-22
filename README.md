@@ -1,5 +1,5 @@
 # Iti0302-2025
-change 2
+
 ## Project Overview
 
 Börsibaar is a full-stack web application with a Spring Boot backend and Next.js frontend. It provides inventory management, transaction tracking, and price optimization features for stock bar themed events. There is also a public page for seeing drink prices in a format that is similar to the stock market.
