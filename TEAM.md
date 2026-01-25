@@ -17,8 +17,6 @@ Mingi Kapapatrull
 
 ### Branches
 
-We use a three-tier branching strategy:
-
 - **`main`** - Production-ready code. Only contains stable, tested features that are ready for deployment.
 - **`dev`** - Testing and integration branch. Used to test features before they go to production. May contain experimental or work-in-progress code.
 - **`feature/*`** or **`bugfix/*`** - Short-lived branches for individual features or bug fixes. Always created from `main` (never from `dev`).
@@ -92,3 +90,6 @@ This approach keeps `main` stable and production-ready while allowing `dev` to s
 - Resolve conflicts locally before pushing
 - Assign reviewers to your PRs
 - Don't approve your own code
+## Features
+1. InventoryService: getByOrganization loads the Product for each Inventory via productRepository.findById - replaced with inventory.getProduct - Lauri
+2. Created a public item transaction history endpoint - created endpoint in InvemtoryTransactionController - Lauri dev
