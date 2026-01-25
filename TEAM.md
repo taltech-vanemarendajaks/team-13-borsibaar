@@ -64,10 +64,31 @@ The PR author is responsible for resolving all merge conflicts:
 
 This approach keeps `main` stable and production-ready while allowing `dev` to serve as a true testing ground where features can be validated before promotion to production.
 
-### Notes for contributors
+## Merge Strategies Used
 
-- Always pull the latest changes from `main` before creating a feature branch.
-- Use clear commit messages to describe your changes.
-- Resolve conflicts locally before pushing your branch.
-- Assign at least one reviewer from the team to your PR.
-- Don’t approve your own PR, code review must be done by someone else.
+### 1. Squash Merge
+- **Used in**: PR #1
+- **Why**: Consolidate initial setup commits into one clean commit
+
+### 2. Regular Merge Commit
+- **Used in**: PR #2, #3, #5
+- **Why**: Preserve full commit history for ongoing feature development
+
+### 3. Rebase-Based Merge
+- **Used in**: PR #4 (to main)
+- **Why**: Keep main branch linear and clean for production
+
+## Problems Encountered
+
+### Merge Conflict in TEAM.md
+- **Issue**: feature/1-team13-lauri conflicted with dev branch (Kairo and Lauri both edited TEAM.md)
+- **Resolution**: Lauri resolved locally using `git merge`, combined both sets of changes
+- **Lesson**: Coordinate on file edits; communicate about parallel work
+
+## Notes for contributors
+
+- Always pull latest changes before creating a feature branch
+- Use clear commit messages
+- Resolve conflicts locally before pushing
+- Assign reviewers to your PRs
+- Don't approve your own code
