@@ -63,3 +63,11 @@ The PR author is responsible for resolving all merge conflicts:
   5. Complete the merge and push to the target branch, or push the resolved feature branch if using PR merge strategies
 
 This approach keeps `main` stable and production-ready while allowing `dev` to serve as a true testing ground where features can be validated before promotion to production.
+
+### Notes for contributors
+
+- Always pull the latest changes from `main` before creating a feature branch.
+- Use clear commit messages to describe your changes.
+- Resolve conflicts locally before pushing your branch.
+- Assign at least one reviewer from the team to your PR.
+- Don’t approve your own PR, code review must be done by someone else.
