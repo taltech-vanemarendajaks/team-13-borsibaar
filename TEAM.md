@@ -13,6 +13,10 @@ Mingi Kapapatrull
 - Anna Borisova - Anchovy-est
 - Kairo Korgend - KairoKorgend
 
+## Link to team repository
+
+https://github.com/taltech-vanemarendajaks/team-13-borsibaar
+
 ## Short description of your team workflow
 
 ### Branches
