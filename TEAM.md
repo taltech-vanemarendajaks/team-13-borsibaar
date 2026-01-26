@@ -62,6 +62,34 @@ The PR author is responsible for resolving all merge conflicts:
 
 This approach keeps `main` stable and production-ready while allowing `dev` to serve as a true testing ground where features can be validated before promotion to production.
 
-## Features
-1. InventoryService: getByOrganization loads the Product for each Inventory via productRepository.findById - replaced with inventory.getProduct - Lauri
-2. Created a public item transaction history endpoint - created endpoint in InvemtoryTransactionController - Lauri
+## Team Contributions
+- **Kairo**
+  - Created and overseer github workflow
+  - Created FRONTEND_TECH_DEBT.md file
+  - Refactored login page and updated team.md
+  - Resolved conflicts locally
+  - Participated in reviewing pull requests
+  - Lead Git workflow call
+  
+- **Mihkel**
+  - Merged PR from feature branch to dev
+  - Added comments on PR
+  - Participated in git workflow call
+  
+- **Karoliina**
+  - Participated in git workflow call
+  - Participated in reviewing pull requests
+
+- **Anna**
+  - Modified TEAM.md and resolved conflicts locally
+  - Participated in reviewing pull requests
+  - Created PRs
+  - Participated in git workflow call
+  
+- **Lauri**
+    - Participated in reviewing pull requests
+    - Created a PR
+    - Participated in git workflow call
+    - Modified InventoryService in backend: getByOrganization loads the Product for each Inventory via productRepository.findById replaced with inventory.getProduct
+    - Created a public item transaction history endpoint - created endpoint in InventoryTransactionController.
+
