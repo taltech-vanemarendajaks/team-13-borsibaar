@@ -70,6 +70,7 @@ This approach keeps `main` stable and production-ready while allowing `dev` to s
   - Resolved conflicts locally
   - Participated in reviewing pull requests
   - Lead Git workflow call
+  - Deleted merged feature branches
   
 - **Mihkel**
   - Merged PR from feature branch to dev
@@ -79,6 +80,8 @@ This approach keeps `main` stable and production-ready while allowing `dev` to s
 - **Karoliina**
   - Participated in git workflow call
   - Participated in reviewing pull requests
+  - Modified TEAM.md
+  - Deleted merged feature branches
 
 - **Anna**
   - Modified TEAM.md and resolved conflicts locally
@@ -98,14 +101,19 @@ This approach keeps `main` stable and production-ready while allowing `dev` to s
 ### 1. Squash Merge
 - **Used in**: PR #1
 - **Why**: Consolidate initial setup commits into one clean commit
+- https://github.com/taltech-vanemarendajaks/team-13-borsibaar/pull/1
 
 ### 2. Regular Merge Commit
 - **Used in**: PR #2, #3, #5
 - **Why**: Preserve full commit history for ongoing feature development
+- https://github.com/taltech-vanemarendajaks/team-13-borsibaar/pull/2
+- https://github.com/taltech-vanemarendajaks/team-13-borsibaar/pull/3
+- https://github.com/taltech-vanemarendajaks/team-13-borsibaar/pull/5
 
 ### 3. Rebase-Based Merge
 - **Used in**: PR #4 (to main)
 - **Why**: Keep main branch linear and clean for production
+- https://github.com/taltech-vanemarendajaks/team-13-borsibaar/pull/4
 
 ## Problems Encountered
 
