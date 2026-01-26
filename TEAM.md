@@ -62,6 +62,63 @@ The PR author is responsible for resolving all merge conflicts:
 
 This approach keeps `main` stable and production-ready while allowing `dev` to serve as a true testing ground where features can be validated before promotion to production.
 
-## Features
-1. InventoryService: getByOrganization loads the Product for each Inventory via productRepository.findById - replaced with inventory.getProduct - Lauri
-2. Created a public item transaction history endpoint - created endpoint in InvemtoryTransactionController - Lauri
+## Team Contributions
+- **Kairo**
+  - Created and overseer github workflow
+  - Created FRONTEND_TECH_DEBT.md file
+  - Refactored login page and updated team.md
+  - Resolved conflicts locally
+  - Participated in reviewing pull requests
+  - Lead Git workflow call
+  
+- **Mihkel**
+  - Merged PR from feature branch to dev
+  - Added comments on PR
+  - Participated in git workflow call
+  
+- **Karoliina**
+  - Participated in git workflow call
+  - Participated in reviewing pull requests
+
+- **Anna**
+  - Modified TEAM.md and resolved conflicts locally
+  - Participated in reviewing pull requests
+  - Created PRs
+  - Participated in git workflow call
+  
+- **Lauri**
+    - Participated in reviewing pull requests
+    - Created a PR
+    - Participated in git workflow call
+    - Modified InventoryService in backend: getByOrganization loads the Product for each Inventory via productRepository.findById replaced with inventory.getProduct
+    - Created a public item transaction history endpoint - created endpoint in InventoryTransactionController.
+
+## Merge Strategies Used
+
+### 1. Squash Merge
+- **Used in**: PR #1
+- **Why**: Consolidate initial setup commits into one clean commit
+
+### 2. Regular Merge Commit
+- **Used in**: PR #2, #3, #5
+- **Why**: Preserve full commit history for ongoing feature development
+
+### 3. Rebase-Based Merge
+- **Used in**: PR #4 (to main)
+- **Why**: Keep main branch linear and clean for production
+
+## Problems Encountered
+
+### Merge Conflict in TEAM.md
+- **Issue**: feature/1-team13-lauri conflicted with dev branch (Kairo and Lauri both edited TEAM.md)
+- **Resolution**: Lauri resolved locally using `git merge`, combined both sets of changes
+- **Lesson**: Coordinate on file edits; communicate about parallel work
+
+## Notes for contributors
+
+- Always pull latest changes before creating a feature branch
+- Use clear commit messages
+- Resolve conflicts locally before pushing
+- Assign reviewers to your PRs
+- Don't approve your own code
+
