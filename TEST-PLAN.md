@@ -17,8 +17,90 @@ A test plan document for Borsibaar application project.
     c) Inventory and its relationship with Products and related main methods
     d) Transaction and its related methods regarding inventory, prices, availability and dynamic price change
     e) System Testing for the bar application to check if the entire application is working in a deployed environment in a real life bar setting scenario as intended. Who ? Bartenders
-### Test scope
-### Test approach
+## Test Scope
+
+### In Scope
+
+The testing scope for the Borsibaar application includes validation of core functional and non-functional aspects of the system to ensure correct behavior, reliability, and usability.
+
+#### Functional Scope
+- User authentication and authorization using OAuth2
+- Role-based access control (customer and admin)
+- Menu and product management
+- Order creation, modification, and submission
+- Order lifecycle management (e.g. placed, in progress, completed)
+- Payment processing flows (if applicable)
+- Administrative features for managing products and orders
+
+#### Non-Functional Scope
+- Usability and user experience validation
+- Basic performance and responsiveness testing
+- Security testing focused on access control and input validation
+- Browser and device compatibility (for supported environments)
+
+
+
+### Out of Scope
+
+The following items are excluded from the current testing scope:
+- Full-scale load and stress testing
+- Advanced penetration and security testing
+- Reliability testing of third-party services
+- Hardware, infrastructure, or network failure simulation
+
+
+### Test Deliverables
+- Test cases and test scenarios
+- Defect reports
+- Test execution summary
+- Final test report
+
+
+## Test Approach
+
+### Testing Strategy
+
+Testing will be performed using a structured and risk-based approach, focusing on critical business functionality first.
+
+
+### Testing Levels
+- **Smoke Testing**
+  Basic verification of application startup and critical features.
+- **System Testing**
+  End-to-end validation of application workflows across frontend and backend.
+- **Regression Testing**
+  Ensuring existing functionality remains unaffected after changes or fixes.
+
+
+### Test Types
+
+#### Manual Testing
+Manual testing will be the primary method used. Test cases will be designed based on requirements and expected user behavior.
+
+#### Automated Testing (Future Scope)
+- UI automation for critical user flows
+- API testing for backend endpoints
+- Automated regression tests integrated into CI pipelines
+
+### Test Design Techniques
+- Equivalence Partitioning
+- Boundary Value Analysis
+- State Transition Testing
+- Risk-Based Testing
+
+
+
+### Test Environment
+- Dedicated testing or staging environment
+- Test database with controlled data
+- Test user accounts with different permission levels
+- Mock or sandbox services for external integrations
+
+
+### Defect Management
+- Defects are logged with detailed reproduction steps
+- Severity and priority levels are assigned
+- Defects are tracked until resolution or acceptance
 
 ### Test environment
 - The test environment consists of campus bar workstations and mobile devices used by bartenders, 
@@ -179,3 +261,16 @@ The testing process consists of the following activities:
 | Test Summary Report     | Final report with metrics, coverage, and quality assessment |
 | Lessons Learned         | Documentation of insights for future projects               |
 | Archived Test Artifacts | Preserved test cases, data, and environment for future use  |
+
+## Entry Criteria
+1. **Environment ready** – The shared test setup (backend server, database, login keys) is running and everyone knows which feature flags are turned on.
+2. **Stories ready** – All work is finished, the latest build is deployed, and sample data for organizations/products/pricing is locked so we all test the same things.
+
+## Exit Criteria
+1. **Key flows pass** – Automated backend tests and the frontend build succeed, and the main user journeys (editing inventory, selling at POS, showing the public price board) work without serious bugs.
+2. **Sign-off** – QA shares what was tested plus any remaining issues, and the product owner agrees we can release or accepts the leftover minor issues.
+
+## Roles and Responsibilities
+1. **QA Lead / Tester** – Keeps this plan up to date, runs the priority test suites, reports status, and confirms when exit criteria are met.
+2. **Backend & Frontend Developers** – Fix bugs, help prepare or reset test data, and explain how features should behave when testers have questions.
+3. **DevOps Engineer** – Keeps environments, builds, and logs available so testing can continue smoothly.
