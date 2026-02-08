@@ -36,7 +36,7 @@ jobs:
           tags: kairokrgend/borsibaar-frontend:kairo
           platforms: linux/amd64
           build-args: |
-            NEXT_PUBLIC_BACKEND_URL=http://kairo-borsibaar.zapto.org
+            NEXT_PUBLIC_BACKEND_URL=https://kairo-borsibaar.zapto.org
 
       - name: Set up SSH key
         run: |
