@@ -1,0 +1,52 @@
+version: "3.3"
+services:
+  postgres:
+    image: postgres:17
+    container_name: kairo-db
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_DB: ${POSTGRES_DB}
+    volumes:
+      - kairo-postgres-data:/var/lib/postgresql/data
+    restart: unless-stopped
+    networks:
+      - kairo-network
+
+  backend:
+    image: kairokrgend/borsibaar-backend:kairo
+    container_name: kairo-backend
+    ports:
+      - "8081:8080"
+    env_file:
+      - .env
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/${POSTGRES_DB}
+      APP_CORS_ALLOWED_ORIGINS: ${APP_CORS_ALLOWED_ORIGINS}
+      APP_FRONTEND_URL: ${APP_FRONTEND_URL}
+    depends_on:
+      - postgres
+    restart: unless-stopped
+    networks:
+      - kairo-network
+
+  frontend:
+    image: kairokrgend/borsibaar-frontend:kairo
+    container_name: kairo-frontend
+    ports:
+      - "3001:3000"
+    environment:
+      BACKEND_URL: http://backend:8080
+      NEXT_PUBLIC_BACKEND_URL: ${NEXT_PUBLIC_BACKEND_URL}
+    restart: unless-stopped
+    depends_on:
+      - backend
+    networks:
+      - kairo-network
+
+volumes:
+  kairo-postgres-data:
+
+networks:
+  kairo-network:
+    driver: bridge
