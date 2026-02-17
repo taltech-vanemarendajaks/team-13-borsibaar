@@ -19,6 +19,8 @@ public class AuthController {
     private final AuthService authService;
     @Value("${app.frontend.url}")
     private String frontendUrl;
+    @Value("${app.cookie.secure:true}")
+    private boolean cookieSecure;
 
     public AuthController(AuthService authService) {
         this.authService = authService;
@@ -30,7 +32,7 @@ public class AuthController {
 
         Cookie cookie = new Cookie("jwt", result.dto().token());
         cookie.setHttpOnly(true);
-        cookie.setSecure(true); // HTTPS enabled with domain
+        cookie.setSecure(cookieSecure); // HTTPS enabled with domain
         cookie.setPath("/");
         cookie.setMaxAge(24 * 60 * 60); // 1 day
         response.addCookie(cookie);
