@@ -21,17 +21,17 @@ export default function OnboardingPage() {
 
   // Client safety guard: if user already onboarded, redirect away.
   const { data: user } = useSWR(
-    "/api/backend/account",
-    async (url: string) => {
-      const r = await fetch(url, { credentials: "include" });
-      if (!r.ok) return null;
-      try {
-        return await r.json();
-      } catch {
-        return null;
-      }
-    },
-    { refreshInterval: 0, revalidateOnFocus: false }
+      "/api/backend/account",
+      async (url: string) => {
+        const r = await fetch(url, { credentials: "include" });
+        if (!r.ok) return null;
+        try {
+          return await r.json();
+        } catch {
+          return null;
+        }
+      },
+      { refreshInterval: 0, revalidateOnFocus: false }
   );
 
   useEffect(() => {
@@ -82,6 +82,7 @@ export default function OnboardingPage() {
 
       router.replace("/dashboard");
     } catch (e) {
+      // @ts-ignore
       setError(e?.message ?? "Failed to save");
     } finally {
       setSaving(false);
@@ -89,62 +90,62 @@ export default function OnboardingPage() {
   }
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-background p-6">
-      <div className="w-full max-w-lg rounded-2xl bg-card text-card-foreground p-6 shadow [color-scheme:light]">
-        <h1 className="text-xl font-semibold">Finish onboarding</h1>
-        <p className="mt-1 text-sm text-muted-foreground">
-          Choose your organization to continue.
-        </p>
+      <div className="min-h-screen flex items-center justify-center bg-background p-6">
+        <div className="w-full max-w-lg rounded-2xl bg-card text-card-foreground p-6 shadow [color-scheme:light]">
+          <h1 className="text-xl font-semibold">Finish onboarding</h1>
+          <p className="mt-1 text-sm text-muted-foreground">
+            Choose your organization to continue.
+          </p>
 
-        <div className="mt-5 space-y-4">
-          <div>
-            <label className="text-sm font-medium">Organization</label>
-            <select
-              className="mt-1 w-full rounded-lg border border-input bg-background text-foreground px-3 py-2"
-              value={organizationId}
-              onChange={(e) =>
-                setOrganizationId(e.target.value ? Number(e.target.value) : "")
-              }
-              disabled={loadingOrgs || saving}
-            >
-              <option value="">{loadingOrgs ? "Loading…" : "Select…"}</option>
-              {orgs.map((o) => (
-                <option key={o.id} value={o.id}>
-                  {o.name}
-                </option>
-              ))}
-            </select>
+          <div className="mt-5 space-y-4">
+            <div>
+              <label className="text-sm font-medium">Organization</label>
+              <select
+                  className="mt-1 w-full rounded-lg border border-input bg-background text-foreground px-3 py-2"
+                  value={organizationId}
+                  onChange={(e) =>
+                      setOrganizationId(e.target.value ? Number(e.target.value) : "")
+                  }
+                  disabled={loadingOrgs || saving}
+              >
+                <option value="">{loadingOrgs ? "Loading…" : "Select…"}</option>
+                {orgs.map((o) => (
+                    <option key={o.id} value={o.id}>
+                      {o.name}
+                    </option>
+                ))}
+              </select>
+            </div>
+
+            <label className="flex items-center gap-2 text-sm">
+              <input
+                  type="checkbox"
+                  checked={acceptTerms}
+                  onChange={(e) => setAcceptTerms(e.target.checked)}
+                  disabled={saving}
+              />
+              I accept the Terms &amp; Privacy Policy.
+            </label>
+
+            {error && <p className="text-sm text-destructive">{error}</p>}
           </div>
 
-          <label className="flex items-center gap-2 text-sm">
-            <input
-              type="checkbox"
-              checked={acceptTerms}
-              onChange={(e) => setAcceptTerms(e.target.checked)}
-              disabled={saving}
-            />
-            I accept the Terms &amp; Privacy Policy.
-          </label>
-
-          {error && <p className="text-sm text-destructive">{error}</p>}
-        </div>
-
-        <div className="mt-6 flex justify-end gap-2">
-          <a
-            className="rounded-lg border border-input px-4 py-2 text-foreground"
-            href={`${backendUrl}/logout`}
-          >
-            Cancel
-          </a>
-          <button
-            className="rounded-lg bg-primary px-4 py-2 text-primary-foreground disabled:opacity-50"
-            disabled={saving || !acceptTerms || organizationId === ""}
-            onClick={submit}
-          >
-            {saving ? "Saving…" : "Finish"}
-          </button>
+          <div className="mt-6 flex justify-end gap-2">
+            <a
+                className="rounded-lg border border-input px-4 py-2 text-foreground"
+                href={`${backendUrl}/logout`}
+            >
+              Cancel
+            </a>
+            <button
+                className="rounded-lg bg-primary px-4 py-2 text-primary-foreground disabled:opacity-50"
+                disabled={saving || !acceptTerms || organizationId === ""}
+                onClick={submit}
+            >
+              {saving ? "Saving…" : "Finish"}
+            </button>
+          </div>
         </div>
       </div>
-    </div>
   );
 }

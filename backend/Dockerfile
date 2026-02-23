@@ -2,9 +2,17 @@ FROM eclipse-temurin:21-jdk AS build
 WORKDIR /app
 
 # Copy the pre-built JAR from the target directory
-COPY target/*.jar app.jar
+COPY .mvn/ .mvn/
+COPY mvnw pom.xml ./
+RUN ./mvnw dependency:go-offline -B
 
-ENTRYPOINT ["java", "-jar", "app.jar"]
+COPY src/ src/
+RUN ./mvnw clean package -DskipTests -B
+
+FROM eclipse-temurin:21-jre
+WORKDIR /app
+COPY --from=build /app/target/*.jar app.jar
 
 EXPOSE 8080
 # might need rework here
+ENTRYPOINT ["java", "-jar", "app.jar"]

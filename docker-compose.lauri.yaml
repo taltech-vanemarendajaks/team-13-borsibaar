@@ -1,0 +1,52 @@
+version: "3.3"
+services:
+  postgres:
+    image: postgres:17
+    container_name: lauri-db
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_DB: ${POSTGRES_DB}
+    volumes:
+      - lauri-postgres-data:/var/lib/postgresql/data
+    restart: unless-stopped
+    networks:
+      - lauri-network
+
+  backend:
+    image: inwardx/borsibaar-backend:lauri
+    container_name: lauri-backend
+    ports:
+      - "8082:8080"
+    env_file:
+      - .env
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/${POSTGRES_DB}
+      APP_CORS_ALLOWED_ORIGINS: ${APP_CORS_ALLOWED_ORIGINS}
+      APP_FRONTEND_URL: ${APP_FRONTEND_URL}
+    depends_on:
+      - postgres
+    restart: unless-stopped
+    networks:
+      - lauri-network
+
+  frontend:
+    image: inwardx/borsibaar-frontend:lauri
+    container_name: lauri-frontend
+    ports:
+      - "3002:3000"
+    environment:
+      BACKEND_URL: http://backend:8080
+      NEXT_PUBLIC_BACKEND_URL: ${NEXT_PUBLIC_BACKEND_URL}
+    restart: unless-stopped
+    depends_on:
+      - backend
+    networks:
+      - lauri-network
+
+volumes:
+  lauri-postgres-data:
+
+networks:
+  lauri-network:
+    driver: bridge
