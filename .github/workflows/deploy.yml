@@ -1,8 +1,8 @@
-name: Deploy Kairo
+name: Deploy
 
 on:
   push:
-    branches: [ feature/deployment-kairo ]
+    branches: [ main ]
 
 jobs:
   build-and-deploy:
@@ -24,7 +24,7 @@ jobs:
           context: backend
           file: backend/Dockerfile
           push: true
-          tags: kairokrgend/borsibaar-backend:kairo
+          tags: kairokrgend/borsibaar-backend:latest
           platforms: linux/amd64
 
       - name: Build and push frontend image
@@ -33,7 +33,7 @@ jobs:
           context: .
           file: frontend/Dockerfile
           push: true
-          tags: kairokrgend/borsibaar-frontend:kairo
+          tags: kairokrgend/borsibaar-frontend:latest
           platforms: linux/amd64
           build-args: |
             NEXT_PUBLIC_BACKEND_URL=https://kairo-borsibaar.zapto.org
@@ -45,15 +45,19 @@ jobs:
           chmod 600 ~/.ssh/id_ed25519
           ssh-keyscan "${{ secrets.SERVER_IP }}" >> ~/.ssh/known_hosts
 
+      - name: Copy compose file to server
+        run: |
+          scp -i ~/.ssh/id_ed25519 docker-compose.prod.yaml "${{ secrets.SSH_USER }}@${{ secrets.SERVER_IP }}":~/borsibaar/docker-compose.yaml
+
       - name: Create .env on server
         run: |
-          printf '%s\n' "${{ secrets.ENV_PRODUCTION_FILE }}" | ssh -i ~/.ssh/id_ed25519 "${{ secrets.SSH_USER }}@${{ secrets.SERVER_IP }}" "cat > ~/kairo/.env"
+          printf '%s\n' "${{ secrets.ENV_PRODUCTION_FILE }}" | ssh -i ~/.ssh/id_ed25519 "${{ secrets.SSH_USER }}@${{ secrets.SERVER_IP }}" "cat > ~/borsibaar/.env"
 
       - name: Deploy on server
         run: |
           ssh -i ~/.ssh/id_ed25519 "${{ secrets.SSH_USER }}@${{ secrets.SERVER_IP }}" << 'EOF'
           set -e
-          cd ~/kairo
+          cd ~/borsibaar
           docker compose pull
           docker compose up -d
           echo "Deployment complete!"
