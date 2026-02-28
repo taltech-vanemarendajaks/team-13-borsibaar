@@ -1,0 +1,14 @@
+name: Self-Hosted Docker Hello World
+
+on:
+  workflow_dispatch:
+
+jobs:
+  docker-test:
+    name: Run Docker Hello World
+    runs-on: self-hosted
+    steps:
+      - name: Check for Docker Installation
+        run: docker --version
+      - name: Spin up Hello World Container
+        run: docker run hello-world
